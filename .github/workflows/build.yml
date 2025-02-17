@@ -18,11 +18,11 @@ jobs:
 
       # Restore NuGet packages using MSBuild
       - name: Restore NuGet Packages
-        run: nuget restore OrderProcessingSystem.sln  # Ensure your solution file path is correct
+        run: nuget restore OrderProcessingApplication/OrderProcessingSystem.sln  # Ensure your solution file path is correct
 
       # Build the solution with MSBuild (for .NET Framework 4.8)
       - name: Build Solution
-        run: msbuild OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU"  # Make sure this path is correct
+        run: msbuild OrderProcessingApplication/OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU"  # Make sure this path is correct
 
       # Run Tests (if you have unit tests configured)
       #- name: Run Tests
