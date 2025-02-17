@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@latest
 
       # Restore NuGet packages (update solution path)
       - name: Restore NuGet Packages
