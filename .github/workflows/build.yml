@@ -16,11 +16,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Restore NuGet packages (update the solution path)
+      # Restore NuGet packages (update solution path)
       - name: Restore NuGet Packages
         run: nuget restore OrderProcessingApplication/OrderProcessingSystem.sln
 
-      # Build the solution with MSBuild (update the solution path)
+      # Build the solution with MSBuild (update solution path)
       - name: Build Solution
         run: msbuild OrderProcessingApplication/OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU" /v:detailed
 
