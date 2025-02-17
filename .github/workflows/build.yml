@@ -10,22 +10,20 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Use Windows runner with pre-installed .NET Framework
+    runs-on: windows-latest  # Use Windows runner for .NET Framework
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Setup .NET Framework
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '4.8'  # Ensure this matches your project
+      # Restore NuGet packages using MSBuild
+      - name: Restore NuGet Packages
+        run: nuget restore OrderProcessingSystem.sln  # Ensure your solution file path is correct
 
-      - name: Restore Dependencies
-        run: dotnet restore OrderProcessingSystem.sln  # Using dotnet restore instead of nuget restore
-
+      # Build the solution with MSBuild (for .NET Framework 4.8)
       - name: Build Solution
-        run: msbuild OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU"
-      
+        run: msbuild OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU"  # Make sure this path is correct
+
+      # Run Tests (if you have unit tests configured)
       - name: Run Tests
-        run: dotnet test --no-restore --verbosity normal  # Use dotnet test instead of vstest.console.exe
+        run: vstest.console.exe TestProject/bin/Release/TestProject.dll  # Adjust if your test project has a different path
