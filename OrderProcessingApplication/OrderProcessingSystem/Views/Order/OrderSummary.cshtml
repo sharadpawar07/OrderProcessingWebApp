@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "OrderSummary";
+}
+
+@model OrderProcessingSystem.Models.Order
+
+<h2>Order Summary</h2>
+
+<p>Order Amount: @Model.OrderAmount</p>
+
+<p>Customer Type: @Model.CustomerType</p>
+
+<p>Discount: @Model.DiscountAmount</p>
+
+<p>Final Total: @Model.FinalTotal</p>
+
+@if (TempData["OrderPlaced"] != null)
+{
+    <script>alert("Order placed successfully!");</script>
+}

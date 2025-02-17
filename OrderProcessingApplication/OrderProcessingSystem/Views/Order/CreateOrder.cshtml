@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Create Order</h2>
+@model OrderProcessingSystem.Models.Order
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Order Amount:</label>
+        @Html.TextBoxFor(model => model.OrderAmount)
+    </div><br />
+    <div>
+        <label>Customer Type:</label>
+        @Html.DropDownListFor(model => model.CustomerType, new SelectList(new[] { "New", "Loyal" }))
+    </div><br />
+    <button type="submit">Submit Order</button>
+}
+
