@@ -10,20 +10,20 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Use Windows runner for .NET Framework
+    runs-on: windows-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Restore NuGet packages using MSBuild
+      # Restore NuGet packages (update the solution path)
       - name: Restore NuGet Packages
-        run: nuget restore OrderProcessingApplication/OrderProcessingSystem.sln  # Ensure your solution file path is correct
+        run: nuget restore OrderProcessingApplication/OrderProcessingSystem.sln
 
-      # Build the solution with MSBuild (for .NET Framework 4.8)
+      # Build the solution with MSBuild (update the solution path)
       - name: Build Solution
-        run: msbuild OrderProcessingApplication/OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU"  # Make sure this path is correct
+        run: msbuild OrderProcessingApplication/OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU" /v:detailed
 
-      # Run Tests (if you have unit tests configured)
-      #- name: Run Tests
-      #  run: vstest.console.exe TestProject/bin/Release/TestProject.dll  # Adjust if your test project has a different path
+      # Run tests (if any)
+      - name: Run Tests
+        run: vstest.console.exe TestProject/bin/Release/TestProject.dll
