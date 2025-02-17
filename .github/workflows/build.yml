@@ -18,11 +18,11 @@ jobs:
 
       # Restore NuGet packages (update solution path)
       - name: Restore NuGet Packages
-        run: nuget restore OrderProcessingSystem.sln
+        run: nuget restore OrderProcessingWebApp/OrderProcessingSystem.sln
 
       # Build the solution with MSBuild (update solution path)
       - name: Build Solution
-        run: msbuild OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU" /v:detailed
+        run: msbuild OrderProcessingWebApp/OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU" /v:detailed
 
       # Run tests (if any)
       - name: Run Tests
