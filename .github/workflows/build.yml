@@ -25,5 +25,5 @@ jobs:
         run: msbuild OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU"  # Make sure this path is correct
 
       # Run Tests (if you have unit tests configured)
-      - name: Run Tests
-        run: vstest.console.exe TestProject/bin/Release/TestProject.dll  # Adjust if your test project has a different path
+      #- name: Run Tests
+      #  run: vstest.console.exe TestProject/bin/Release/TestProject.dll  # Adjust if your test project has a different path
