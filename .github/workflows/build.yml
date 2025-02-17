@@ -1,0 +1,31 @@
+name: Build and Test
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest  # Use Windows runner with pre-installed .NET Framework
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET Framework
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '4.8'  # Ensure this matches your project
+
+      - name: Restore Dependencies
+        run: dotnet restore OrderProcessingSystem.sln  # Using dotnet restore instead of nuget restore
+
+      - name: Build Solution
+        run: msbuild OrderProcessingSystem.sln /p:Configuration=Release /p:Platform="Any CPU"
+      
+      - name: Run Tests
+        run: dotnet test --no-restore --verbosity normal  # Use dotnet test instead of vstest.console.exe
